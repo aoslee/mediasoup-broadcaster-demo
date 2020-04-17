@@ -7,7 +7,7 @@ set(broadcaster_VERSION_MAJOR 0)
 set(broadcaster_VERSION_MINOR 1)
 
 # C++ standard requirements.
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Add some compile flags to our source files.
@@ -43,9 +43,14 @@ endif(APPLE)
 target_sources(${PROJECT_NAME} PRIVATE
 	src/Broadcaster.cpp
 	src/main.cpp
-	src/peerConnectionUtils.cpp
-	src/VideoCapturer.cpp
-	src/VcmCapturer.cpp
+	src/MediaStreamTrackFactory.cpp
+	src/fakegenerators/fake_audio_capture_module.cc
+	src/fakegenerators/fake_frame_source.cc
+	src/fakegenerators/frame_generator_capturer.cc
+	src/fakegenerators/frame_generator.cc
+	src/fakegenerators/test_video_capturer.cc
+	src/fakegenerators/frame_utils.cc
+	src/fakegenerators/task_queue_for_test.cc
 )
 
 # Private (implementation) header files.
@@ -66,3 +71,4 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 	mediasoupclient
 	${CPR_LIBRARIES}
 )
+

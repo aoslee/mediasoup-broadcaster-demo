@@ -1,6 +1,6 @@
 #include "Broadcaster.hpp"
 #include "mediasoupclient.hpp"
-#include "peerConnectionUtils.hpp"
+#include "MediaStreamTrackFactory.hpp"
 #include "json.hpp"
 #include <cpr/cpr.h>
 #include <cstdlib>
@@ -250,7 +250,7 @@ void Broadcaster::Start(
 
 	if (this->device.CanProduce("video"))
 	{
-		auto videoTrack = createVideoTrack(std::to_string(rtc::CreateRandomId()));
+		auto videoTrack = createSquaresVideoTrack(std::to_string(rtc::CreateRandomId()));
 
 		if (useSimulcast)
 		{
